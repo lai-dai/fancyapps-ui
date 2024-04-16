@@ -62,13 +62,9 @@ export function ReactCarousel({
         props.className || ""
       }`}
     >
-      {isReady ? (
-        children
-      ) : (
-        <div className="size-full flex items-center justify-center">
-          loading...
-        </div>
-      )}
+      {isReady
+        ? children
+        : React.cloneElement(Array.isArray(children) ? children[0] : null)}
     </div>
   );
 }

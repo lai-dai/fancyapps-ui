@@ -49,7 +49,7 @@ function ReactCarousel({
       ...props,
       className: `f-carousel disabled:[&_.f-button]:invisible ${props.className || ""}`
     },
-    isReady ? children : /* @__PURE__ */ React.createElement("div", { className: "size-full flex items-center justify-center" }, "loading...")
+    isReady ? children : React.cloneElement(Array.isArray(children) ? children[0] : null)
   );
 }
 function ReactCarouselItem(props) {
