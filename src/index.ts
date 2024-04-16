@@ -1,5 +1,8 @@
-export { ReactCarousel, CarouselItem } from "./react-carousel";
-export type { ReactCarouselProps, CarouselItemProps } from "./react-carousel";
+export {
+  ReactCarousel,
+  ReactCarouselItem,
+  type ReactCarouselProps,
+  type ReactCarouselItemProps,
+} from "./react-carousel";
 
-export { ReactFancybox } from "./react-fancybox";
-export type { ReactFancyboxProps } from "./react-fancybox";
+export { ReactFancybox, type ReactFancyboxProps } from "./react-fancybox";

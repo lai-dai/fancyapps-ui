@@ -47,18 +47,18 @@ function ReactCarousel({
   return /* @__PURE__ */ React.createElement(
     "div",
     {
+      ref: containerRef,
       ...props,
-      className: `f-carousel disabled:[&_.f-button]:invisible ${props.className || ""}`,
-      ref: containerRef
+      className: `f-carousel disabled:[&_.f-button]:invisible ${props.className || ""}`
     },
     isReady ? children : /* @__PURE__ */ React.createElement("div", { className: "size-full flex items-center justify-center" }, "loading...")
   );
 }
-function CarouselItem(props) {
+function ReactCarouselItem(props) {
   return /* @__PURE__ */ React.createElement("div", { ...props, className: `f-carousel__slide ${props.className || ""}` });
 }
 export {
-  CarouselItem,
-  ReactCarousel
+  ReactCarousel,
+  ReactCarouselItem
 };
 //# sourceMappingURL=react-carousel.mjs.map

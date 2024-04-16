@@ -56,11 +56,11 @@ export function ReactCarousel({
 
   return (
     <div
+      ref={containerRef}
       {...props}
       className={`f-carousel disabled:[&_.f-button]:invisible ${
         props.className || ""
       }`}
-      ref={containerRef}
     >
       {isReady ? (
         children
@@ -73,13 +73,13 @@ export function ReactCarousel({
   );
 }
 
-export interface CarouselItemProps
+export interface ReactCarouselItemProps
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   > {}
 
-export function CarouselItem(props: CarouselItemProps) {
+export function ReactCarouselItem(props: ReactCarouselItemProps) {
   return (
     <div {...props} className={`f-carousel__slide ${props.className || ""}`} />
   );

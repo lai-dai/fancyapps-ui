@@ -30,8 +30,8 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
-  CarouselItem: () => CarouselItem,
   ReactCarousel: () => ReactCarousel,
+  ReactCarouselItem: () => ReactCarouselItem,
   ReactFancybox: () => ReactFancybox
 });
 module.exports = __toCommonJS(src_exports);
@@ -83,14 +83,14 @@ function ReactCarousel({
   return /* @__PURE__ */ React.createElement(
     "div",
     {
+      ref: containerRef,
       ...props,
-      className: `f-carousel disabled:[&_.f-button]:invisible ${props.className || ""}`,
-      ref: containerRef
+      className: `f-carousel disabled:[&_.f-button]:invisible ${props.className || ""}`
     },
     isReady ? children : /* @__PURE__ */ React.createElement("div", { className: "size-full flex items-center justify-center" }, "loading...")
   );
 }
-function CarouselItem(props) {
+function ReactCarouselItem(props) {
   return /* @__PURE__ */ React.createElement("div", { ...props, className: `f-carousel__slide ${props.className || ""}` });
 }
 
@@ -176,8 +176,8 @@ function ReactFancybox({
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  CarouselItem,
   ReactCarousel,
+  ReactCarouselItem,
   ReactFancybox
 });
 //# sourceMappingURL=index.js.map

@@ -31,8 +31,8 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/react-carousel.tsx
 var react_carousel_exports = {};
 __export(react_carousel_exports, {
-  CarouselItem: () => CarouselItem,
-  ReactCarousel: () => ReactCarousel
+  ReactCarousel: () => ReactCarousel,
+  ReactCarouselItem: () => ReactCarouselItem
 });
 module.exports = __toCommonJS(react_carousel_exports);
 var React = __toESM(require("react"));
@@ -81,19 +81,19 @@ function ReactCarousel({
   return /* @__PURE__ */ React.createElement(
     "div",
     {
+      ref: containerRef,
       ...props,
-      className: `f-carousel disabled:[&_.f-button]:invisible ${props.className || ""}`,
-      ref: containerRef
+      className: `f-carousel disabled:[&_.f-button]:invisible ${props.className || ""}`
     },
     isReady ? children : /* @__PURE__ */ React.createElement("div", { className: "size-full flex items-center justify-center" }, "loading...")
   );
 }
-function CarouselItem(props) {
+function ReactCarouselItem(props) {
   return /* @__PURE__ */ React.createElement("div", { ...props, className: `f-carousel__slide ${props.className || ""}` });
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  CarouselItem,
-  ReactCarousel
+  ReactCarousel,
+  ReactCarouselItem
 });
 //# sourceMappingURL=react-carousel.js.map
