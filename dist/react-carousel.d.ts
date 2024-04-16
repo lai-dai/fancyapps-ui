@@ -5,5 +5,8 @@ type ReactCarouselProps = React.PropsWithChildren<React.HTMLAttributes<HTMLDivEl
     options?: Partial<OptionsType>;
 }>;
 declare function ReactCarousel({ children, options, ...props }: ReactCarouselProps): React.JSX.Element;
+interface CarouselItemProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+}
+declare function CarouselItem(props: CarouselItemProps): React.JSX.Element;
 
-export { ReactCarousel, ReactCarouselProps };
+export { CarouselItem, CarouselItemProps, ReactCarousel, ReactCarouselProps };

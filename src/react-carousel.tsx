@@ -72,3 +72,15 @@ export function ReactCarousel({
     </div>
   );
 }
+
+export interface CarouselItemProps
+  extends React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  > {}
+
+export function CarouselItem(props: CarouselItemProps) {
+  return (
+    <div {...props} className={`f-carousel__slide ${props.className || ""}`} />
+  );
+}
