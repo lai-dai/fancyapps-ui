@@ -2,16 +2,14 @@
 
 import * as React from "react";
 import { Carousel as NativeCarousel } from "@fancyapps/ui";
-
+import { Thumbs } from "@fancyapps/ui/dist/carousel/carousel.thumbs.esm";
+import { Autoplay } from "@fancyapps/ui/dist/carousel/carousel.autoplay.esm";
 import { vi } from "./i10n/Carousel/vi";
+import type { OptionsType } from "@fancyapps/ui/types/Carousel/options";
 
 import "@fancyapps/ui/dist/carousel/carousel.css";
-
-import { Thumbs } from "@fancyapps/ui/dist/carousel/carousel.thumbs.esm";
-
 import "@fancyapps/ui/dist/carousel/carousel.thumbs.css";
-
-import type { OptionsType } from "@fancyapps/ui/types/Carousel/options";
+import "@fancyapps/ui/dist/carousel/carousel.autoplay.css";
 
 export type ReactCarouselProps = React.PropsWithChildren<
   React.HTMLAttributes<HTMLDivElement> & {
@@ -46,7 +44,7 @@ export function ReactCarousel({
         ...defaultOptions,
         ...options,
       },
-      { Thumbs }
+      { Thumbs, Autoplay }
     );
 
     return () => {
