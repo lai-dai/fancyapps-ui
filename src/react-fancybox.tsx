@@ -2,12 +2,10 @@
 
 import * as React from "react";
 import { Fancybox as NativeFancybox } from "@fancyapps/ui";
-
 import { vi } from "./i10n/Fancybox/vi";
+import type { OptionsType } from "@fancyapps/ui/types/Fancybox/options";
 
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-
-import type { OptionsType } from "@fancyapps/ui/types/Fancybox/options";
 
 export interface Fancybox extends NativeFancybox {}
 export interface ReactFancyboxProps

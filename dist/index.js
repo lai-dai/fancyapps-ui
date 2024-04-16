@@ -60,8 +60,11 @@ var defaultOptions = {
 function ReactCarousel({
   children,
   options = {},
+  className,
+  setApi,
   ...props
 }) {
+  const instance = React.useRef();
   const containerRef = React.useRef(null);
   const [isReady, setIsReady] = React.useState(false);
   import_ui.Carousel.defaults.on = {
@@ -70,25 +73,27 @@ function ReactCarousel({
     }
   };
   React.useEffect(() => {
-    const container = containerRef.current;
-    const instance = new import_ui.Carousel(
-      container,
+    instance.current = new import_ui.Carousel(
+      containerRef.current,
       {
         ...defaultOptions,
         ...options
       },
       { Thumbs: import_carousel_thumbs.Thumbs, Autoplay: import_carousel_autoplay.Autoplay }
     );
+    if (setApi instanceof Function)
+      setApi(instance.current);
     return () => {
-      instance.destroy();
+      if (instance.current)
+        instance.current.destroy();
     };
   });
   return /* @__PURE__ */ React.createElement(
     "div",
     {
-      ref: containerRef,
       ...props,
-      className: `f-carousel disabled:[&_.f-button]:invisible ${props.className || ""}`
+      ref: containerRef,
+      className: `f-carousel disabled:[&_.f-button]:invisible ${className || ""}`
     },
     isReady ? children : Array.isArray(children) ? children[0] : null
   );
@@ -181,8 +186,8 @@ function ReactFancybox({
 // src/react-panzoom.tsx
 var React3 = __toESM(require("react"));
 var import_ui3 = require("@fancyapps/ui");
-var import_panzoom = require("@fancyapps/ui/dist/panzoom/panzoom.css");
 var import_panzoom_toolbar = require("@fancyapps/ui/dist/panzoom/panzoom.toolbar.esm");
+var import_panzoom = require("@fancyapps/ui/dist/panzoom/panzoom.css");
 var import_panzoom_toolbar2 = require("@fancyapps/ui/dist/panzoom/panzoom.toolbar.css");
 var defaultOptions3 = {
   l10n: vi2
@@ -192,32 +197,36 @@ function ReactPanzoom({
   options = {},
   className,
   onReady,
+  setApi,
   ...props
 }) {
+  const instance = React3.useRef();
   const containerRef = React3.useRef(null);
   import_ui3.Panzoom.defaults.on = {
     ready: onReady
   };
   React3.useEffect(() => {
-    const container = containerRef.current;
-    const instance = new import_ui3.Panzoom(
-      container,
+    instance.current = new import_ui3.Panzoom(
+      containerRef.current,
       {
         ...defaultOptions3,
         ...options
       },
       { Toolbar: import_panzoom_toolbar.Toolbar }
     );
+    if (setApi instanceof Function)
+      setApi(instance.current);
     return () => {
-      instance.destroy();
+      if (instance.current)
+        instance.current.destroy();
     };
   });
   return /* @__PURE__ */ React3.createElement(
     "div",
     {
+      ...props,
       ref: containerRef,
-      className: `f-panzoom ${className || ""}`,
-      ...props
+      className: `f-panzoom ${className || ""}`
     },
     children
   );

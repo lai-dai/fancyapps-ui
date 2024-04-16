@@ -36,9 +36,7 @@ __export(react_panzoom_exports, {
 module.exports = __toCommonJS(react_panzoom_exports);
 var React = __toESM(require("react"));
 var import_ui = require("@fancyapps/ui");
-var import_panzoom = require("@fancyapps/ui/dist/panzoom/panzoom.css");
 var import_panzoom_toolbar = require("@fancyapps/ui/dist/panzoom/panzoom.toolbar.esm");
-var import_panzoom_toolbar2 = require("@fancyapps/ui/dist/panzoom/panzoom.toolbar.css");
 
 // src/i10n/Panzoom/vi.ts
 var vi = {
@@ -62,6 +60,8 @@ var vi = {
 };
 
 // src/react-panzoom.tsx
+var import_panzoom = require("@fancyapps/ui/dist/panzoom/panzoom.css");
+var import_panzoom_toolbar2 = require("@fancyapps/ui/dist/panzoom/panzoom.toolbar.css");
 var defaultOptions = {
   l10n: vi
 };
@@ -70,32 +70,36 @@ function ReactPanzoom({
   options = {},
   className,
   onReady,
+  setApi,
   ...props
 }) {
+  const instance = React.useRef();
   const containerRef = React.useRef(null);
   import_ui.Panzoom.defaults.on = {
     ready: onReady
   };
   React.useEffect(() => {
-    const container = containerRef.current;
-    const instance = new import_ui.Panzoom(
-      container,
+    instance.current = new import_ui.Panzoom(
+      containerRef.current,
       {
         ...defaultOptions,
         ...options
       },
       { Toolbar: import_panzoom_toolbar.Toolbar }
     );
+    if (setApi instanceof Function)
+      setApi(instance.current);
     return () => {
-      instance.destroy();
+      if (instance.current)
+        instance.current.destroy();
     };
   });
   return /* @__PURE__ */ React.createElement(
     "div",
     {
+      ...props,
       ref: containerRef,
-      className: `f-panzoom ${className || ""}`,
-      ...props
+      className: `f-panzoom ${className || ""}`
     },
     children
   );

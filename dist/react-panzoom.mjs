@@ -3,9 +3,7 @@
 // src/react-panzoom.tsx
 import * as React from "react";
 import { Panzoom as NativePanzoom } from "@fancyapps/ui";
-import "@fancyapps/ui/dist/panzoom/panzoom.css";
 import { Toolbar } from "@fancyapps/ui/dist/panzoom/panzoom.toolbar.esm";
-import "@fancyapps/ui/dist/panzoom/panzoom.toolbar.css";
 
 // src/i10n/Panzoom/vi.ts
 var vi = {
@@ -29,6 +27,8 @@ var vi = {
 };
 
 // src/react-panzoom.tsx
+import "@fancyapps/ui/dist/panzoom/panzoom.css";
+import "@fancyapps/ui/dist/panzoom/panzoom.toolbar.css";
 var defaultOptions = {
   l10n: vi
 };
@@ -37,32 +37,36 @@ function ReactPanzoom({
   options = {},
   className,
   onReady,
+  setApi,
   ...props
 }) {
+  const instance = React.useRef();
   const containerRef = React.useRef(null);
   NativePanzoom.defaults.on = {
     ready: onReady
   };
   React.useEffect(() => {
-    const container = containerRef.current;
-    const instance = new NativePanzoom(
-      container,
+    instance.current = new NativePanzoom(
+      containerRef.current,
       {
         ...defaultOptions,
         ...options
       },
       { Toolbar }
     );
+    if (setApi instanceof Function)
+      setApi(instance.current);
     return () => {
-      instance.destroy();
+      if (instance.current)
+        instance.current.destroy();
     };
   });
   return /* @__PURE__ */ React.createElement(
     "div",
     {
+      ...props,
       ref: containerRef,
-      className: `f-panzoom ${className || ""}`,
-      ...props
+      className: `f-panzoom ${className || ""}`
     },
     children
   );
