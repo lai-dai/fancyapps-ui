@@ -6,9 +6,8 @@ interface Carousel extends Carousel$1 {
 }
 interface ReactCarouselProps extends React.PropsWithChildren, React.HTMLAttributes<HTMLDivElement> {
     options?: Partial<OptionsType>;
-    setApi?: (api: Carousel$1) => void;
 }
-declare function ReactCarousel({ children, options, setApi, ...props }: ReactCarouselProps): React.JSX.Element;
+declare function ReactCarousel({ children, options, ...props }: ReactCarouselProps): React.JSX.Element;
 interface ReactCarouselItemProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 }
 declare function ReactCarouselItem(props: ReactCarouselItemProps): React.JSX.Element;

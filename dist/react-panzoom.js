@@ -70,7 +70,6 @@ function ReactPanzoom({
   options = {},
   className,
   onReady,
-  setApi,
   ...props
 }) {
   const containerRef = React.useRef(null);
@@ -87,9 +86,6 @@ function ReactPanzoom({
       },
       { Toolbar: import_panzoom_toolbar.Toolbar }
     );
-    if (setApi instanceof Function) {
-      setApi(instance);
-    }
     return () => {
       instance.destroy();
     };

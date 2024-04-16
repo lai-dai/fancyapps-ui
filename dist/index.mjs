@@ -21,7 +21,6 @@ var defaultOptions = {
 function ReactCarousel({
   children,
   options = {},
-  setApi,
   ...props
 }) {
   const containerRef = React.useRef(null);
@@ -41,9 +40,6 @@ function ReactCarousel({
       },
       { Thumbs, Autoplay }
     );
-    if (setApi instanceof Function) {
-      setApi(instance);
-    }
     return () => {
       instance.destroy();
     };
@@ -157,7 +153,6 @@ function ReactPanzoom({
   options = {},
   className,
   onReady,
-  setApi,
   ...props
 }) {
   const containerRef = React3.useRef(null);
@@ -174,9 +169,6 @@ function ReactPanzoom({
       },
       { Toolbar }
     );
-    if (setApi instanceof Function) {
-      setApi(instance);
-    }
     return () => {
       instance.destroy();
     };

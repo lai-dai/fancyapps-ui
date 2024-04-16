@@ -57,7 +57,6 @@ var defaultOptions = {
 function ReactCarousel({
   children,
   options = {},
-  setApi,
   ...props
 }) {
   const containerRef = React.useRef(null);
@@ -77,9 +76,6 @@ function ReactCarousel({
       },
       { Thumbs: import_carousel_thumbs.Thumbs, Autoplay: import_carousel_autoplay.Autoplay }
     );
-    if (setApi instanceof Function) {
-      setApi(instance);
-    }
     return () => {
       instance.destroy();
     };

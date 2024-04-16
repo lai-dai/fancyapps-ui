@@ -17,7 +17,6 @@ export interface ReactPanzoomProps
     React.HTMLAttributes<HTMLDivElement> {
   options?: Partial<OptionsType>;
   onReady?: (...args: any[]) => void;
-  setApi?: (api: NativePanzoom) => void;
 }
 
 const defaultOptions: ReactPanzoomProps["options"] = {
@@ -29,7 +28,6 @@ export function ReactPanzoom({
   options = {},
   className,
   onReady,
-  setApi,
   ...props
 }: ReactPanzoomProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -49,10 +47,6 @@ export function ReactPanzoom({
       },
       { Toolbar }
     );
-
-    if (setApi instanceof Function) {
-      setApi(instance);
-    }
 
     return () => {
       instance.destroy();
