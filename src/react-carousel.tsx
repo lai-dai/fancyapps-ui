@@ -60,9 +60,7 @@ export function ReactCarousel({
         props.className || ""
       }`}
     >
-      {isReady
-        ? children
-        : React.cloneElement(Array.isArray(children) ? children[0] : null)}
+      {isReady ? children : Array.isArray(children) ? children[0] : null}
     </div>
   );
 }

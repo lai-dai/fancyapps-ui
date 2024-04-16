@@ -37,6 +37,8 @@ __export(react_carousel_exports, {
 module.exports = __toCommonJS(react_carousel_exports);
 var React = __toESM(require("react"));
 var import_ui = require("@fancyapps/ui");
+var import_carousel_thumbs = require("@fancyapps/ui/dist/carousel/carousel.thumbs.esm");
+var import_carousel_autoplay = require("@fancyapps/ui/dist/carousel/carousel.autoplay.esm");
 
 // src/i10n/Carousel/vi.ts
 var vi = {
@@ -47,8 +49,8 @@ var vi = {
 
 // src/react-carousel.tsx
 var import_carousel = require("@fancyapps/ui/dist/carousel/carousel.css");
-var import_carousel_thumbs = require("@fancyapps/ui/dist/carousel/carousel.thumbs.esm");
 var import_carousel_thumbs2 = require("@fancyapps/ui/dist/carousel/carousel.thumbs.css");
+var import_carousel_autoplay2 = require("@fancyapps/ui/dist/carousel/carousel.autoplay.css");
 var defaultOptions = {
   l10n: vi
 };
@@ -72,7 +74,7 @@ function ReactCarousel({
         ...defaultOptions,
         ...options
       },
-      { Thumbs: import_carousel_thumbs.Thumbs }
+      { Thumbs: import_carousel_thumbs.Thumbs, Autoplay: import_carousel_autoplay.Autoplay }
     );
     return () => {
       instance.destroy();
@@ -85,7 +87,7 @@ function ReactCarousel({
       ...props,
       className: `f-carousel disabled:[&_.f-button]:invisible ${props.className || ""}`
     },
-    isReady ? children : React.cloneElement(Array.isArray(children) ? children[0] : null)
+    isReady ? children : Array.isArray(children) ? children[0] : null
   );
 }
 function ReactCarouselItem(props) {

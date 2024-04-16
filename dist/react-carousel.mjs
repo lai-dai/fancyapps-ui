@@ -3,6 +3,8 @@
 // src/react-carousel.tsx
 import * as React from "react";
 import { Carousel as NativeCarousel } from "@fancyapps/ui";
+import { Thumbs } from "@fancyapps/ui/dist/carousel/carousel.thumbs.esm";
+import { Autoplay } from "@fancyapps/ui/dist/carousel/carousel.autoplay.esm";
 
 // src/i10n/Carousel/vi.ts
 var vi = {
@@ -13,8 +15,8 @@ var vi = {
 
 // src/react-carousel.tsx
 import "@fancyapps/ui/dist/carousel/carousel.css";
-import { Thumbs } from "@fancyapps/ui/dist/carousel/carousel.thumbs.esm";
 import "@fancyapps/ui/dist/carousel/carousel.thumbs.css";
+import "@fancyapps/ui/dist/carousel/carousel.autoplay.css";
 var defaultOptions = {
   l10n: vi
 };
@@ -38,7 +40,7 @@ function ReactCarousel({
         ...defaultOptions,
         ...options
       },
-      { Thumbs }
+      { Thumbs, Autoplay }
     );
     return () => {
       instance.destroy();
@@ -51,7 +53,7 @@ function ReactCarousel({
       ...props,
       className: `f-carousel disabled:[&_.f-button]:invisible ${props.className || ""}`
     },
-    isReady ? children : React.cloneElement(Array.isArray(children) ? children[0] : null)
+    isReady ? children : Array.isArray(children) ? children[0] : null
   );
 }
 function ReactCarouselItem(props) {
