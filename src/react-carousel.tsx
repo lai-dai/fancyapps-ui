@@ -11,12 +11,13 @@ import "@fancyapps/ui/dist/carousel/carousel.css";
 import "@fancyapps/ui/dist/carousel/carousel.thumbs.css";
 import "@fancyapps/ui/dist/carousel/carousel.autoplay.css";
 
-export type ReactCarouselProps = React.PropsWithChildren<
-  React.HTMLAttributes<HTMLDivElement> & {
-    options?: Partial<OptionsType>;
-    setApi?: (api: NativeCarousel) => void;
-  }
->;
+export interface Carousel extends NativeCarousel {}
+export interface ReactCarouselProps
+  extends React.PropsWithChildren,
+    React.HTMLAttributes<HTMLDivElement> {
+  options?: Partial<OptionsType>;
+  setApi?: (api: NativeCarousel) => void;
+}
 
 const defaultOptions: ReactCarouselProps["options"] = {
   l10n: vi,

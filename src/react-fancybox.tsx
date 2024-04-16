@@ -9,13 +9,14 @@ import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 import type { OptionsType } from "@fancyapps/ui/types/Fancybox/options";
 
-export type ReactFancyboxProps = React.PropsWithChildren<
-  React.HTMLAttributes<HTMLDivElement> & {
-    delegate?: string;
-    options?: Partial<OptionsType>;
-    setFancyboxIsActive?: (isActive: boolean) => void;
-  }
->;
+export interface Fancybox extends NativeFancybox {}
+export interface ReactFancyboxProps
+  extends React.PropsWithChildren,
+    React.HTMLAttributes<HTMLDivElement> {
+  delegate?: string;
+  options?: Partial<OptionsType>;
+  setFancyboxIsActive?: (isActive: boolean) => void;
+}
 
 const defaultOptions: ReactFancyboxProps["options"] = {
   l10n: vi,

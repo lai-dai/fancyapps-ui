@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { Panzoom } from '@fancyapps/ui';
+import { Panzoom as Panzoom$1 } from '@fancyapps/ui';
 import { OptionsType } from '@fancyapps/ui/types/Panzoom/options';
 
-type ReactPanzoomProps = React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement> & {
+interface Panzoom extends Panzoom$1 {
+}
+interface ReactPanzoomProps extends React.PropsWithChildren, React.HTMLAttributes<HTMLDivElement> {
     options?: Partial<OptionsType>;
     onReady?: (...args: any[]) => void;
-    setApi?: (api: Panzoom) => void;
-}>;
+    setApi?: (api: Panzoom$1) => void;
+}
 declare function ReactPanzoom({ children, options, className, onReady, setApi, ...props }: ReactPanzoomProps): React.JSX.Element;
 
-export { ReactPanzoom, ReactPanzoomProps };
+export { Panzoom, ReactPanzoom, ReactPanzoomProps };

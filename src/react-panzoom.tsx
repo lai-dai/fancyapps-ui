@@ -11,13 +11,14 @@ import { vi } from "./i10n/Panzoom/vi";
 
 import type { OptionsType } from "@fancyapps/ui/types/Panzoom/options";
 
-export type ReactPanzoomProps = React.PropsWithChildren<
-  React.HTMLAttributes<HTMLDivElement> & {
-    options?: Partial<OptionsType>;
-    onReady?: (...args: any[]) => void;
-    setApi?: (api: NativePanzoom) => void;
-  }
->;
+export interface Panzoom extends NativePanzoom {}
+export interface ReactPanzoomProps
+  extends React.PropsWithChildren,
+    React.HTMLAttributes<HTMLDivElement> {
+  options?: Partial<OptionsType>;
+  onReady?: (...args: any[]) => void;
+  setApi?: (api: NativePanzoom) => void;
+}
 
 const defaultOptions: ReactPanzoomProps["options"] = {
   l10n: vi,
