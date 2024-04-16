@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/i10n/Carousel/vi.ts"],"sourcesContent":["export const vi = {\r\n  NEXT: \"Tiếp\",\r\n  PREV: \"Trước\",\r\n  GOTO: \"Đi đến slide #%d\",\r\n}\r\n"],"mappings":";;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAO,IAAM,KAAK;AAAA,EAChB,MAAM;AAAA,EACN,MAAM;AAAA,EACN,MAAM;AACR;","names":[]}
