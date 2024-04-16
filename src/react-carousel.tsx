@@ -14,6 +14,7 @@ import "@fancyapps/ui/dist/carousel/carousel.autoplay.css";
 export type ReactCarouselProps = React.PropsWithChildren<
   React.HTMLAttributes<HTMLDivElement> & {
     options?: Partial<OptionsType>;
+    setApi?: (api: NativeCarousel) => void;
   }
 >;
 
@@ -24,6 +25,7 @@ const defaultOptions: ReactCarouselProps["options"] = {
 export function ReactCarousel({
   children,
   options = {},
+  setApi,
   ...props
 }: ReactCarouselProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -46,6 +48,10 @@ export function ReactCarousel({
       },
       { Thumbs, Autoplay }
     );
+
+    if (setApi instanceof Function) {
+      setApi(instance);
+    }
 
     return () => {
       instance.destroy();

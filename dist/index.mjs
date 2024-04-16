@@ -21,6 +21,7 @@ var defaultOptions = {
 function ReactCarousel({
   children,
   options = {},
+  setApi,
   ...props
 }) {
   const containerRef = React.useRef(null);
@@ -40,6 +41,9 @@ function ReactCarousel({
       },
       { Thumbs, Autoplay }
     );
+    if (setApi instanceof Function) {
+      setApi(instance);
+    }
     return () => {
       instance.destroy();
     };
@@ -138,9 +142,59 @@ function ReactFancybox({
   });
   return /* @__PURE__ */ React2.createElement("div", { ...props, ref: containerRef }, children);
 }
+
+// src/react-panzoom.tsx
+import * as React3 from "react";
+import { Panzoom as NativePanzoom } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/panzoom/panzoom.css";
+import { Toolbar } from "@fancyapps/ui/dist/panzoom/panzoom.toolbar.esm";
+import "@fancyapps/ui/dist/panzoom/panzoom.toolbar.css";
+var defaultOptions3 = {
+  l10n: vi2
+};
+function ReactPanzoom({
+  children,
+  options = {},
+  className,
+  onReady,
+  setApi,
+  ...props
+}) {
+  const containerRef = React3.useRef(null);
+  NativePanzoom.defaults.on = {
+    ready: onReady
+  };
+  React3.useEffect(() => {
+    const container = containerRef.current;
+    const instance = new NativePanzoom(
+      container,
+      {
+        ...defaultOptions3,
+        ...options
+      },
+      { Toolbar }
+    );
+    if (setApi instanceof Function) {
+      setApi(instance);
+    }
+    return () => {
+      instance.destroy();
+    };
+  });
+  return /* @__PURE__ */ React3.createElement(
+    "div",
+    {
+      ref: containerRef,
+      className: `f-panzoom ${className || ""}`,
+      ...props
+    },
+    children
+  );
+}
 export {
   ReactCarousel,
   ReactCarouselItem,
-  ReactFancybox
+  ReactFancybox,
+  ReactPanzoom
 };
 //# sourceMappingURL=index.mjs.map

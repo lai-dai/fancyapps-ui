@@ -32,7 +32,8 @@ var src_exports = {};
 __export(src_exports, {
   ReactCarousel: () => ReactCarousel,
   ReactCarouselItem: () => ReactCarouselItem,
-  ReactFancybox: () => ReactFancybox
+  ReactFancybox: () => ReactFancybox,
+  ReactPanzoom: () => ReactPanzoom
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -59,6 +60,7 @@ var defaultOptions = {
 function ReactCarousel({
   children,
   options = {},
+  setApi,
   ...props
 }) {
   const containerRef = React.useRef(null);
@@ -78,6 +80,9 @@ function ReactCarousel({
       },
       { Thumbs: import_carousel_thumbs.Thumbs, Autoplay: import_carousel_autoplay.Autoplay }
     );
+    if (setApi instanceof Function) {
+      setApi(instance);
+    }
     return () => {
       instance.destroy();
     };
@@ -176,10 +181,60 @@ function ReactFancybox({
   });
   return /* @__PURE__ */ React2.createElement("div", { ...props, ref: containerRef }, children);
 }
+
+// src/react-panzoom.tsx
+var React3 = __toESM(require("react"));
+var import_ui3 = require("@fancyapps/ui");
+var import_panzoom = require("@fancyapps/ui/dist/panzoom/panzoom.css");
+var import_panzoom_toolbar = require("@fancyapps/ui/dist/panzoom/panzoom.toolbar.esm");
+var import_panzoom_toolbar2 = require("@fancyapps/ui/dist/panzoom/panzoom.toolbar.css");
+var defaultOptions3 = {
+  l10n: vi2
+};
+function ReactPanzoom({
+  children,
+  options = {},
+  className,
+  onReady,
+  setApi,
+  ...props
+}) {
+  const containerRef = React3.useRef(null);
+  import_ui3.Panzoom.defaults.on = {
+    ready: onReady
+  };
+  React3.useEffect(() => {
+    const container = containerRef.current;
+    const instance = new import_ui3.Panzoom(
+      container,
+      {
+        ...defaultOptions3,
+        ...options
+      },
+      { Toolbar: import_panzoom_toolbar.Toolbar }
+    );
+    if (setApi instanceof Function) {
+      setApi(instance);
+    }
+    return () => {
+      instance.destroy();
+    };
+  });
+  return /* @__PURE__ */ React3.createElement(
+    "div",
+    {
+      ref: containerRef,
+      className: `f-panzoom ${className || ""}`,
+      ...props
+    },
+    children
+  );
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   ReactCarousel,
   ReactCarouselItem,
-  ReactFancybox
+  ReactFancybox,
+  ReactPanzoom
 });
 //# sourceMappingURL=index.js.map

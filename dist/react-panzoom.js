@@ -28,54 +28,64 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// src/react-carousel.tsx
-var react_carousel_exports = {};
-__export(react_carousel_exports, {
-  ReactCarousel: () => ReactCarousel,
-  ReactCarouselItem: () => ReactCarouselItem
+// src/react-panzoom.tsx
+var react_panzoom_exports = {};
+__export(react_panzoom_exports, {
+  ReactPanzoom: () => ReactPanzoom
 });
-module.exports = __toCommonJS(react_carousel_exports);
+module.exports = __toCommonJS(react_panzoom_exports);
 var React = __toESM(require("react"));
 var import_ui = require("@fancyapps/ui");
-var import_carousel_thumbs = require("@fancyapps/ui/dist/carousel/carousel.thumbs.esm");
-var import_carousel_autoplay = require("@fancyapps/ui/dist/carousel/carousel.autoplay.esm");
+var import_panzoom = require("@fancyapps/ui/dist/panzoom/panzoom.css");
+var import_panzoom_toolbar = require("@fancyapps/ui/dist/panzoom/panzoom.toolbar.esm");
+var import_panzoom_toolbar2 = require("@fancyapps/ui/dist/panzoom/panzoom.toolbar.css");
 
-// src/i10n/Carousel/vi.ts
+// src/i10n/Panzoom/vi.ts
 var vi = {
-  NEXT: "Ti\u1EBFp",
-  PREV: "Tr\u01B0\u1EDBc",
-  GOTO: "\u0110i \u0111\u1EBFn slide #%d"
+  PANUP: "\u0110i l\xEAn",
+  PANDOWN: "\u0110i xu\u1ED1ng",
+  PANLEFT: "Sang tr\xE1i",
+  PANRIGHT: "Sang ph\u1EA3i",
+  ZOOMIN: "Ph\xF3ng to",
+  ZOOMOUT: "Thu nh\u1ECF",
+  TOGGLEZOOM: "Chuy\u1EC3n m\u1EE9c \u0111\u1ED9 ph\xF3ng to",
+  TOGGLE1TO1: "Chuy\u1EC3n m\u1EE9c \u0111\u1ED9 ph\xF3ng to",
+  ITERATEZOOM: "Chuy\u1EC3n m\u1EE9c \u0111\u1ED9 ph\xF3ng to",
+  ROTATECCW: "Xoay ng\u01B0\u1EE3c chi\u1EC1u kim \u0111\u1ED3ng h\u1ED3",
+  ROTATECW: "Xoay theo chi\u1EC1u kim \u0111\u1ED3ng h\u1ED3",
+  FLIPX: "L\u1EADt theo chi\u1EC1u ngang",
+  FLIPY: "L\u1EADt theo chi\u1EC1u d\u1ECDc",
+  FITX: "V\u1EEBa v\u1EB7n theo chi\u1EC1u ngang",
+  FITY: "V\u1EEBa v\u1EB7n theo chi\u1EC1u d\u1ECDc",
+  RESET: "\u0110\u1EB7t l\u1EA1i",
+  TOGGLEFS: "B\u1EADt ch\u1EBF \u0111\u1ED9 to\xE0n m\xE0n h\xECnh"
 };
 
-// src/react-carousel.tsx
-var import_carousel = require("@fancyapps/ui/dist/carousel/carousel.css");
-var import_carousel_thumbs2 = require("@fancyapps/ui/dist/carousel/carousel.thumbs.css");
-var import_carousel_autoplay2 = require("@fancyapps/ui/dist/carousel/carousel.autoplay.css");
+// src/react-panzoom.tsx
 var defaultOptions = {
   l10n: vi
 };
-function ReactCarousel({
+function ReactPanzoom({
   children,
   options = {},
+  className,
+  onReady,
   setApi,
   ...props
 }) {
   const containerRef = React.useRef(null);
-  const [isReady, setIsReady] = React.useState(false);
-  import_ui.Carousel.defaults.on = {
-    ready: () => {
-      setIsReady(true);
-    }
+  import_ui.Panzoom.defaults.on = {
+    ready: onReady
   };
   React.useEffect(() => {
     const container = containerRef.current;
-    const instance = new import_ui.Carousel(
+    const instance = new import_ui.Panzoom(
       container,
       {
         ...defaultOptions,
         ...options
       },
-      { Thumbs: import_carousel_thumbs.Thumbs, Autoplay: import_carousel_autoplay.Autoplay }
+      { Toolbar: import_panzoom_toolbar.Toolbar }
     );
     if (setApi instanceof Function) {
       setApi(instance);
@@ -88,18 +98,14 @@ function ReactCarousel({
     "div",
     {
       ref: containerRef,
-      ...props,
-      className: `f-carousel disabled:[&_.f-button]:invisible ${props.className || ""}`
+      className: `f-panzoom ${className || ""}`,
+      ...props
     },
-    isReady ? children : Array.isArray(children) ? children[0] : null
+    children
   );
-}
-function ReactCarouselItem(props) {
-  return /* @__PURE__ */ React.createElement("div", { ...props, className: `f-carousel__slide ${props.className || ""}` });
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  ReactCarousel,
-  ReactCarouselItem
+  ReactPanzoom
 });
-//# sourceMappingURL=react-carousel.js.map
+//# sourceMappingURL=react-panzoom.js.map
