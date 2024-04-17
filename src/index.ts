@@ -2,6 +2,7 @@ export {
   ReactCarousel,
   ReactCarouselItem,
   type Carousel,
+  type CarouselApi,
   type ReactCarouselProps,
   type ReactCarouselItemProps,
 } from "./react-carousel";
@@ -12,6 +13,7 @@ export {
 } from "./react-fancybox";
 export {
   ReactPanzoom,
-  type ReactPanzoomProps,
   type Panzoom,
+  type PanzoomApi,
+  type ReactPanzoomProps,
 } from "./react-panzoom";
